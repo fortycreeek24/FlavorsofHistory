@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flavors of History</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    
+
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" id="navbar-logo">
+                <img src="images\flavorsofhistoryicon.png" alt="Website Logo">
+            </a>
+            <div class="search-container">
+                <form onsubmit="searchRecipes(); return false;">
+                    <input type="text" id="searchInput" placeholder="Search recipes...">
+                    <button type="submit">Search</button>
+                </form>
+                
+            </div>
+            
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="recipes.html">Recipes</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="meal-categories">
+    <a href="appertizer.html" class="category-link">
+        <div class="category">
+            <img src="images/photo-appetizers.webp" alt="Appetizers">
+            <h3>Appetizers</h3>
+        </div>
+    </a>
+    <a href="mainCourse.html" class="category-link">
+        <div class="category">
+            <img src="/images/main-course.webp" alt="Main Course">
+            <h3>Main Courses</h3>
+        </div>
+    </a>
+    <a href="desserts.html" class="category-link">
+        <div class="category">
+            <img src="/images/dessert-img.webp" alt="Desserts">
+            <h3>Desserts</h3>
+        </div>
+    </a>
+
+</section>
+    <div class="reviews-container">
+        <h2>User Reviews</h2>
+        <div class="review">
+            <p><strong>John Doe:</strong> Great recipes! I've tried several, and they've all been delicious. <span class="rating">★★★★☆</span></p>
+        </div>
+        <div class="review">
+            <p><strong>Jane Smith:</strong> Love the historical context with each recipe. <span class="rating">★★★★★</span></p>
+        </div>
+    
+        <div class="review-form-container">
+            <h2>Submit Your Review</h2>
+            <form id="reviewForm">
+                <input type="text" placeholder="Your Name" name="name" required>
+                <textarea placeholder="Your Review" name="review" required></textarea>
+                <label for="rating">Rating:</label>
+                <div class="star-rating">
+                    <span class="star" data-value="1">&#9733;</span>
+                    <span class="star" data-value="2">&#9733;</span>
+                    <span class="star" data-value="3">&#9733;</span>
+                    <span class="star" data-value="4">&#9733;</span>
+                    <span class="star" data-value="5">&#9733;</span>
+                    <input type="hidden" name="rating" value="0">
+                </div>
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>
+        
+    </div>
+    
+    
+    <div id="recipeCarousel" class="carousel">
+    <div id="carouselSlides" class="carousel-slides"></div>
+    <div id="randomRecipesContainer">
+        <h2>Random Recipes</h2>
+        <div id="randomRecipes"></div>
+    </div>
+    <button class="carousel-button prev" onclick="moveSlide(-1)">❮</button>
+    <button class="carousel-button next" onclick="moveSlide(1)">❯</button>
+</div>
+
+
+    <footer>
+        
+    </footer>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recipe Details - Flavors of History</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+        <header>
+            <nav>
+                <a href="index.html" id="navbar-logo">
+                    <img src="images\flavorsofhistoryicon.png" alt="Website Logo">
+                </a>
+                <div class="search-container">
+                    <form onsubmit="searchRecipes(); return false;">
+                        <input type="text" id="searchInput" placeholder="Search recipes...">
+                        <button type="submit">Search</button>
+                    </form>
+                    
+                </div>
+                
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="recipes.html">Recipes</a></li>
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div id="recipeDetailContainer">
+        </div>
+        
+        
+    <script src="app.js"></script>
+</body>
+</html>
