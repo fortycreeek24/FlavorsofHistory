@@ -1,10 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    function searchRecipes() {
-     
-    }
-
-    
     var reviewForm = document.getElementById('reviewForm');
     if (reviewForm) {
         reviewForm.addEventListener('submit', function(event) {
@@ -229,7 +224,7 @@ const recipes = {
             ingredients: ['1 cup rice', '8 cups water or broth', 'Ginger, sliced', 'Soy sauce', 'Green onions, chopped', 'Cooked chicken or pork (optional)'],
             instructions: ['Rinse rice and add to a pot with water or broth.', 'Bring to a boil, then reduce to a simmer.', 'Add ginger slices and simmer for about 1 hour, stirring occasionally, until it reaches a creamy consistency.', 'Season with soy sauce to taste.'],
             servingTips: 'Serve hot with green onions and your choice of toppings like cooked chicken, pork, or pickled vegetables.',
-            id: 'mainCourse_'
+            id: 'mainCourse_chineseCongee'
         },
     }
 };
@@ -359,29 +354,8 @@ document.addEventListener('DOMContentLoaded', function() {
         displayRecipeDetails();
     }
 });
-function searchRecipes() {
-    var searchTerm = document.getElementById('searchInput').value.toLowerCase();
-    console.log('Search term:', searchTerm);
 
-    //Can't get the search bar to work.  comeback to this
-    for (const category in recipes) {
-        if (recipes.hasOwnProperty(category)) {
-            const categoryRecipes = recipes[category];
 
-            for (const key in categoryRecipes) {
-                if (categoryRecipes.hasOwnProperty(key)) {
-                    const recipe = categoryRecipes[key];
-                    const recipeCard = document.getElementById(`recipeCard-${category}_${key}`);
-                    if (recipe.title.toLowerCase().includes(searchTerm)) {
-                        recipeCard.style.display = '';
-                    } else {
-                        recipeCard.style.display = 'none';
-                    }
-                }
-            }
-        }
-    }
-}
 function displayRandomRecipes() {
     const carouselSlides = document.getElementById('carouselSlides');
     if (!carouselSlides) return;
@@ -437,9 +411,9 @@ function displayRandomRecipes() {
 
 document.addEventListener('DOMContentLoaded', displayRandomRecipes);
 
-
+let slideIndex = 0;
 function moveSlide(step) {
-    let slideIndex = 0;
+    
     const slides = document.getElementsByClassName('carousel-slide');
     if (slides.length === 0) return;
 
@@ -447,3 +421,57 @@ function moveSlide(step) {
     const totalWidth = -slideIndex * slides[0].clientWidth;
     document.getElementById('carouselSlides').style.transform = `translateX(${totalWidth}px)`;
 }
+
+function searchRecipes() {
+    // 1. Get the search query from the input field
+    const searchQuery = document.getElementById("searchInput").value.toLowerCase();
+  
+    // 2. Filter the recipes based on the query
+    const matchingRecipes = [];
+    for (const category in recipes) {
+      for (const recipeId in recipes[category]) {
+        const recipe = recipes[category][recipeId];
+        if (recipe.title.toLowerCase().includes(searchQuery)) {
+          matchingRecipes.push(recipe);
+        }
+      }
+    }
+
+    console.log(matchingRecipes);
+
+    localStorage.setItem('matchingRecipes', JSON.stringify(matchingRecipes));
+
+    window.location.href = 'searchResults.html';
+
+    return false;
+  }
+
+function displaySearchRecipes() { 
+    const recipesGridResults = document.getElementById('recipesGridResults');
+    if (recipesGridResults) {
+        const storedRecipes = localStorage.getItem('matchingRecipes');
+        const matchingRecipes = JSON.parse(storedRecipes);
+
+        if (matchingRecipes && matchingRecipes.length > 0) {
+            matchingRecipes.forEach( recipe => {
+                const recipeCard = document.createElement('div');
+                recipeCard.classList.add('recipe-card');
+                recipeCard.innerHTML = `
+                    <img src="${recipe.imageUrl}" alt="${recipe.title}" class="recipe-image">
+                    <div class="recipe-title">${recipe.title}</div>
+                `;
+                recipeCard.addEventListener('click', function() {
+                    window.location.href = `recipe-detail.html?id=${recipe.id}`;
+                });
+                recipesGridResults.appendChild(recipeCard);
+            })
+        } else {
+            const noResultsMessage = document.createElement('h2');
+            noResultsMessage.textContent = 'No results found';
+            recipesGridResults.appendChild(noResultsMessage);
+        }
+    }
+  }
+
+document.addEventListener('DOMContentLoaded', displaySearchRecipes);
+

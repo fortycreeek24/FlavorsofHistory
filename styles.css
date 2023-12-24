@@ -150,7 +150,7 @@ footer {
     bottom: 0;
     width: 100%;
 }
-#recipesGrid {
+.recipes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust the size as needed */
     gap: 20px;
@@ -296,6 +296,7 @@ button {
     max-width: 600px;
     margin: auto;
     overflow: hidden;
+    padding-bottom: 20px;
 }
 
 .carousel-slides {
@@ -303,24 +304,30 @@ button {
     transition: transform 0.5s ease;
 }
 
+#recipeCarousel {
+    margin-bottom: 50px; /* Adjust value as needed */
+}
+
+#carousel-buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(100px, 1fr));
+  gap: 10px;
+  justify-content: space-between
+}
+
 .carousel-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
     cursor: pointer;
     padding: 5px;
     z-index: 100;
-}
-
-.carousel-button.prev {
-    left: 5px;
-}
-
-.carousel-button.next {
-    right: 5px;
+    flex: 1; 
 }
 
 .carousel-slide {
