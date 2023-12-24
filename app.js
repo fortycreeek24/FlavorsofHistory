@@ -436,9 +436,10 @@ function displayRandomRecipes() {
 }
 
 document.addEventListener('DOMContentLoaded', displayRandomRecipes);
-let slideIndex = 0;
+
 
 function moveSlide(step) {
+    let slideIndex = 0;
     const slides = document.getElementsByClassName('carousel-slide');
     if (slides.length === 0) return;
 
