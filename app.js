@@ -410,33 +410,33 @@ function displayRandomRecipes() {
 document.addEventListener('DOMContentLoaded', displayRandomRecipes);
 
 
-// // Call the function on DOMContentLoaded
-// document.addEventListener('DOMContentLoaded', displayRandomRecipes);
-// function displayRandomRecipes() {
-//     const carouselSlides = document.getElementById('carouselSlides');
-//     if (!carouselSlides) return;
+// Call the function on DOMContentLoaded
+document.addEventListener('DOMContentLoaded', displayRandomRecipes);
+function displayRandomRecipes() {
+    const carouselSlides = document.getElementById('carouselSlides');
+    if (!carouselSlides) return;
 
-//     let allRecipes = [];
-//     for (const category in recipes) {
-//         allRecipes = allRecipes.concat(Object.values(recipes[category]));
-//     }
+    let allRecipes = [];
+    for (const category in recipes) {
+        allRecipes = allRecipes.concat(Object.values(recipes[category]));
+    }
 
-//     const shuffled = allRecipes.sort(() => 0.5 - Math.random());
-//     let selected = shuffled.slice(0, 5); // Display 5 recipes in the carousel
+    const shuffled = allRecipes.sort(() => 0.5 - Math.random());
+    let selected = shuffled.slice(0, 5); // Display 5 recipes in the carousel
 
-//     carouselSlides.innerHTML = selected.map(recipe => `
-//     <div class="carousel-slide">
-//       <a href="recipe-detail.html?id=${recipe.id}" class="carousel-slide-link">
-//         <h3>${recipe.title}</h3>
-//         <img src="${recipe.imageUrl}" alt="${recipe.title}" class="random-recipe-image">
-//         </a>
-//     </div>
-//   `).join('');
+    carouselSlides.innerHTML = selected.map(recipe => `
+    <div class="carousel-slide">
+      <a href="recipe-detail.html?id=${recipe.id}" class="carousel-slide-link">
+        <h3>${recipe.title}</h3>
+        <img src="${recipe.imageUrl}" alt="${recipe.title}" class="random-recipe-image">
+        </a>
+    </div>
+  `).join('');
   
-// }
+}
 
-// document.addEventListener('DOMContentLoaded', displayRandomRecipes);
-// let slideIndex = 0;
+document.addEventListener('DOMContentLoaded', displayRandomRecipes);
+let slideIndex = 0;
 
 function moveSlide(step) {
     const slides = document.getElementsByClassName('carousel-slide');
